@@ -1,5 +1,10 @@
 package br.com.xyinc.modelo;
 
+/**
+ * Classe do Objeto Local com a distancia a ser relacionado com outro local
+ * @author Daniel
+ *
+ */
 public class LocalProximo extends Local {
 
 	private static final long serialVersionUID = -1418905466321112769L;

@@ -8,6 +8,11 @@ import java.util.ArrayList;
 
 import br.com.xyinc.modelo.Local;
 
+/**
+ * Classe para manipulacao do banco de dados
+ * @author Daniel
+ *
+ */
 public class LocalDao {
 	private static final String NOME_TABELA = " LOCAL ";
 	public int criar(Local local) throws SQLException {

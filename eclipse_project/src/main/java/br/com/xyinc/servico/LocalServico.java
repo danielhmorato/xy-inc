@@ -24,6 +24,11 @@ import br.com.xyinc.dao.LocalDao;
 import br.com.xyinc.modelo.Local;
 import br.com.xyinc.modelo.LocalProximo;
 
+/**
+ * Classe do servico WEBSERVICE
+ * @author Daniel
+ *
+ */
 @Path("/local")
 public class LocalServico {
     @Context UriInfo uriInfo;

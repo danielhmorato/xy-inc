@@ -2,6 +2,11 @@ package br.com.xyinc.modelo;
 
 import java.io.Serializable;
 
+/**
+ * Classe do Objeto/Modelo Local a ser associado a tabela LOCAL do banco de dados 
+ * @author Daniel
+ *
+ */
 public class Local implements Serializable {
 	
 	private static final long serialVersionUID = -3124035664059223014L;
