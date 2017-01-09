@@ -1,0 +1,107 @@
+2017-01-07 08:33:26 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE NOTICIA(
+  
+ ID BIGSERIAL NOT NULL,
+  
+ TITULO CHARACTER VARYING(200),
+  
+ TEXTO CHARACTER VARYING(1000),
+  
+ DATA_PUBLICACAO TIMESTAMP WITHOUT[*] TIME ZONE,
+  
+CONSTRAINT NOTICIA_PK PRIMARY KEY (ID) ) "; expected "WITH, (, FOR, UNSIGNED, NOT, NULL, AS, DEFAULT, GENERATED, NOT, NULL, AUTO_INCREMENT, BIGSERIAL, SERIAL, IDENTITY, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, PRIMARY, UNIQUE, NOT, NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE noticia(
+  
+ id bigserial NOT NULL,
+  
+ titulo character varying(200),
+  
+ texto character varying(1000),
+  
+ data_publicacao timestamp without time zone,
+  
+CONSTRAINT noticia_pk PRIMARY KEY (id) ) [42001-193]
+2017-01-07 09:34:34 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/danie/Desktop/zup/banco/xy_inc.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:94)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:379)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:362)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2923)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:154)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:99)
+	at org.h2.engine.Database.getPageStore(Database.java:2468)
+	at org.h2.engine.Database.open(Database.java:695)
+	at org.h2.engine.Database.openDatabase(Database.java:273)
+	at org.h2.engine.Database.<init>(Database.java:267)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:349)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:115)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:99)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at br.com.xyinc.dao.Conexao.construirConexao(Conexao.java:12)
+	at br.com.xyinc.dao.Conexao.<clinit>(Conexao.java:7)
+	at br.com.xyinc.dao.LocalDao.listar(LocalDao.java:119)
+	at br.com.xyinc.servico.LocalServico.listar(LocalServico.java:34)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory$1.invoke(ResourceMethodInvocationHandlerFactory.java:81)
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:164)
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:181)
+	at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$TypeOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:203)
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:101)
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:389)
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:347)
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:102)
+	at org.glassfish.jersey.server.ServerRuntime$2.run(ServerRuntime.java:305)
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:271)
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:267)
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:315)
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:297)
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:267)
+	at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:317)
+	at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:288)
+	at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:1110)
+	at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:401)
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:386)
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:335)
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:222)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:230)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:474)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:624)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:349)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:783)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:789)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1437)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/danie/Desktop/zup/banco/xy_inc.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 74 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/danie/Desktop/zup/banco/xy_inc.mv.db [1.4.193/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:348)
+	... 69 more
