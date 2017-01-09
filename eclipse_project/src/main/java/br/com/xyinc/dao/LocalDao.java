@@ -15,7 +15,7 @@ import br.com.xyinc.modelo.Local;
  */
 public class LocalDao {
 	private static final String NOME_TABELA = " LOCAL ";
-	public int criar(Local local) throws SQLException {
+	public int inserirLocal(Local local) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO")
 				.append(NOME_TABELA)
@@ -39,56 +39,8 @@ public class LocalDao {
         } 
         return idNovoLocal;
     }
- 
-    public Local alterar(Local local) throws SQLException {
-		StringBuilder sql = new StringBuilder();
-		sql.append("UPDATE")
-				.append(NOME_TABELA)
-				.append("SET descricao = ? , latitude = ? , longitude = ? ")
-				.append("WHERE idlocal = ?");
- 
-        Local localAlterada = null;
-        Connection con = Conexao.getConnection();
-        PreparedStatement ps = con.prepareStatement(sql.toString());
- 
-        try {
-            ps.setString(1, local.getDescricao());
-            ps.setInt(2, local.getLatitude());
-            ps.setInt(3, local.getLongitude());
-            ps.setLong(4, local.getId());
-            ps.executeUpdate();
-            ps.close();
-             
-            localAlterada = ler(local.getId());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } 
- 
-        return localAlterada;
-    }
- 
-    public boolean deletar(int id) throws SQLException {
-		StringBuilder sql = new StringBuilder();
-		sql.append("DELETE FROM")
-				.append(NOME_TABELA)
-				.append("WHERE idlocal = ?");
- 
-        Connection con = Conexao.getConnection();
-        PreparedStatement ps = con.prepareStatement(sql.toString());
- 
-        try {
-            ps.setInt(1, id);
-            ps.execute();
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            ps.close();
-        }
-        return false;
-    }
- 
-    public Local ler(Long id) throws SQLException {
+
+	public Local consultarLocal(Long id) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT * FROM")
 				.append(NOME_TABELA)
@@ -115,7 +67,7 @@ public class LocalDao {
         return local;
     }
  
-    public ArrayList<Local> listar() throws SQLException {
+    public ArrayList<Local> listarTodos() throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT * FROM")
 				.append(NOME_TABELA);

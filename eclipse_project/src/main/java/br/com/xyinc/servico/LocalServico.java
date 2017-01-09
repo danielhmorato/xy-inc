@@ -1,7 +1,5 @@
 package br.com.xyinc.servico;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,7 +36,7 @@ public class LocalServico {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Local> listar() throws SQLException {
         LocalDao dao = new LocalDao();
-        List<Local> locais = dao.listar();
+        List<Local> locais = dao.listarTodos();
         return locais;
     }
     
@@ -48,7 +46,7 @@ public class LocalServico {
     public Response local(@PathParam("codigo") long codigo) { 
         LocalDao dao = new LocalDao();      
         try {           
-            Local local = dao.ler(codigo);      
+            Local local = dao.consultarLocal(codigo);      
             return Response.ok(local).build();                
         } catch (SQLException e) {
             e.printStackTrace();
@@ -65,13 +63,9 @@ public class LocalServico {
     	if (validaPontos(pontoX, pontoY)) {
     		LocalDao dao = new LocalDao();
 	        try {
-	            int idNovoRecurso = dao.criar(new Local(nomePOI, pontoX, pontoY));         
-	            String novoRecurso = uriInfo.getAbsolutePath() + "/" + idNovoRecurso;
-	            URI uri = new URI(novoRecurso) ;                
-	            return Response.created(uri).build();               
+	            int id = dao.inserirLocal(new Local(nomePOI, pontoX, pontoY));         
+	            return Response.ok(dao.consultarLocal(new Long(id))).build();               
 	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        } catch (URISyntaxException e) {
 	            e.printStackTrace();
 	        }      
         }
@@ -89,7 +83,7 @@ public class LocalServico {
     	if (validaPontos(pontoX, pontoY)) {
 	    	Local localRef = new Local("PontoReferencia", pontoX, pontoY);
 	        LocalDao dao = new LocalDao();
-	        for (Local loc : dao.listar()) {
+	        for (Local loc : dao.listarTodos()) {
 	        	double distancia = calcularDistanciaEntreLocais(loc, localRef);
 	        	if (distanciaMaxima >= distancia) {
 	        		locais.add(new LocalProximo(loc, distancia));

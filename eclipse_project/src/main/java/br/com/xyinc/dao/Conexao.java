@@ -20,7 +20,7 @@ public class Conexao {
 		FileInputStream fis = null;
 		Connection con = null;
 		try {
-			fis = new FileInputStream("jdbc.properties");
+			fis = new FileInputStream(new Conexao().getClass().getResource("/jdbc.properties").getFile());
 			props.load(fis);
 			Class.forName(props.getProperty("DB_DRIVER_CLASS"));
 			con = DriverManager
