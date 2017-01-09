@@ -5,7 +5,12 @@
 * Banco de dados simples utilizando h2
 * Servidor de aplicação: Apache Tomcat 8.5.9
 
-###Serviços:
+###Banco de Dados
+* **Utilizado no projeto:** H2
+* **Arquivo de configurações:** /src/main/resources/jdbc.properties
+* No repositório do Github já existe um banco criado no diretório "Banco", porém também neste diretório há um arquivo SQL para criação da estrutura inicial do banco com o nome "script.sql".
+
+###Serviços
 
 #####1. Listar todos os pontos de referencia:     
 >	**Metodo**: `GET`     
